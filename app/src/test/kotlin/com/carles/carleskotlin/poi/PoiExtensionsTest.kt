@@ -8,6 +8,7 @@ import com.carles.carleskotlin.poi.data.entity.PoiRealmObject
 import com.carles.carleskotlin.poi.model.Poi
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.Collections.emptyList
 
 class PoiExtensionsTest {
 

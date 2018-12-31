@@ -20,8 +20,7 @@ class PoiDetailPresenterTest {
 
     @Before
     fun setup() {
-        presenter = PoiDetailPresenter(view, "some_id", testScheduler, testScheduler, test = true)
-        presenter.poiRepository = poiRepository
+        presenter = PoiDetailPresenter(view, "some_id", testScheduler, testScheduler, poiRepository)
     }
 
     @Test

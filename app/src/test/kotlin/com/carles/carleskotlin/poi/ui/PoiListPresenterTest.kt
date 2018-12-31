@@ -21,8 +21,7 @@ class PoiListPresenterTest {
 
     @Before
     fun setup() {
-        presenter = PoiListPresenter(view, testScheduler, testScheduler, test = true)
-        presenter.poiRepository = poiRepository
+        presenter = PoiListPresenter(view, testScheduler, testScheduler, poiRepository)
     }
 
     @Test
