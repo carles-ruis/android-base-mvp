@@ -15,14 +15,15 @@ class PoiLocalDatasource(sharedPreferences: SharedPreferences) : BaseLocalDataso
 
     fun getPoiList() : Maybe<List<Poi>> = Maybe.empty()
 
-    fun getPoiDetail(id:String) : Maybe<Poi> {
-        if (isExpired(PoiRealmObject::class.java.name, id)) return Maybe.empty()
-
-        val realm = Realm.getDefaultInstance()
-        val poiRealmObject = realm.where<PoiRealmObject>().equalTo(PoiRealmObject.ID, id).findFirst()
-        val poi = poiRealmObject?.toModel()
-        realm.close()
-        return if (poi == null) Maybe.empty() else Maybe.just(poi)
+    fun getPoiDetail(id:String) : Maybe<Poi> = Maybe.defer {
+        var poi : Poi? = null
+        if (!isExpired(PoiRealmObject::class.java.name, id)) {
+            val realm = Realm.getDefaultInstance()
+            val poiRealmObject = realm.where<PoiRealmObject>().equalTo(PoiRealmObject.ID, id).findFirst()
+            poi = poiRealmObject?.toModel()
+            realm.close()
+        }
+        if (poi == null) Maybe.empty() else Maybe.just(poi)
     }
 
     fun persist(poi:Poi){
