@@ -16,9 +16,7 @@ data class PoiResponseDto(
         var geocoordinates: String? = null
 )
 
-fun PoiListResponseDto.toModel(): List<Poi> = if (list == null) listOf() else mutableListOf<Poi>().apply {
-    for (dtoItem in list!!) add(dtoItem.toModel())
-}
+fun PoiListResponseDto.toModel(): List<Poi> =  list?.map { poiResponseDto -> poiResponseDto.toModel() } ?: emptyList()
 
 fun PoiResponseDto.toModel(): Poi =
         Poi(id, title, address, sanitize(transport), description, sanitize(email), sanitize(phone), geocoordinates)
