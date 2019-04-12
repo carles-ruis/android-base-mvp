@@ -1,8 +1,7 @@
-package com.carles.carleskotlin.poi.data.datasource
+package com.carles.carleskotlin.poi.data
 
-import com.carles.carleskotlin.common.data.datasource.BaseCloudDatasource
+import com.carles.carleskotlin.common.data.BaseCloudDatasource
 import com.carles.carleskotlin.poi.model.Poi
-import com.carles.carleskotlin.poi.toModel
 import io.reactivex.Single
 
 class PoiCloudDatasource(val poiLocalDatasource: PoiLocalDatasource, val poiService: PoiService) : BaseCloudDatasource() {

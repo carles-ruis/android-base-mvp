@@ -1,5 +1,6 @@
 package com.carles.carleskotlin.common.ui
 
+import com.carles.carleskotlin.R
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -32,5 +33,10 @@ class BasePresenterTest {
         presenter.addDisposable(mockk())
         assertEquals(1, presenter.disposables.size())
         assertFalse(presenter.disposables.isDisposed)
+    }
+
+    @Test
+    fun throwable_shouldGetMessageId() {
+        assertEquals(R.string.error_server_response, Throwable().getMessageId())
     }
 }

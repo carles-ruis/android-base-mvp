@@ -1,7 +1,7 @@
 package com.carles.carleskotlin.poi.ui
 
-import com.carles.carleskotlin.common.getMessageId
 import com.carles.carleskotlin.common.ui.BasePresenter
+import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.model.Poi
 import com.carles.carleskotlin.poi.repository.PoiRepository
 import io.reactivex.Scheduler

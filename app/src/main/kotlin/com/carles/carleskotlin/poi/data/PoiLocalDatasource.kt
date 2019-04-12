@@ -1,12 +1,9 @@
-package com.carles.carleskotlin.poi.data.datasource
+package com.carles.carleskotlin.poi.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.data.datasource.BaseLocalDatasource
-import com.carles.carleskotlin.common.setCacheExpirationTime
-import com.carles.carleskotlin.poi.data.entity.PoiRealmObject
+import com.carles.carleskotlin.common.data.BaseLocalDatasource
+import com.carles.carleskotlin.common.data.setCacheExpirationTime
 import com.carles.carleskotlin.poi.model.Poi
-import com.carles.carleskotlin.poi.toModel
-import com.carles.carleskotlin.poi.toRealmObject
 import io.reactivex.Maybe
 import io.realm.Realm
 import io.realm.kotlin.where

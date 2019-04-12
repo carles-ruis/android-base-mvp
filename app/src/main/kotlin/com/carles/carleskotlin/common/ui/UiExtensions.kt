@@ -1,4 +1,4 @@
-package com.carles.carleskotlin.common
+package com.carles.carleskotlin.common.ui
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater

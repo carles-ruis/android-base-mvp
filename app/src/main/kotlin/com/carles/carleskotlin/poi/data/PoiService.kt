@@ -1,7 +1,5 @@
-package com.carles.carleskotlin.poi.data.datasource
+package com.carles.carleskotlin.poi.data
 
-import com.carles.carleskotlin.poi.data.entity.PoiListResponseDto
-import com.carles.carleskotlin.poi.data.entity.PoiResponseDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

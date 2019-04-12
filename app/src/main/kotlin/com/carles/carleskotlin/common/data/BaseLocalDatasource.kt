@@ -1,7 +1,6 @@
-package com.carles.carleskotlin.common.data.datasource
+package com.carles.carleskotlin.common.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.getCacheExpirationTime
 
 abstract class BaseLocalDatasource(val sharedPreferences: SharedPreferences) {
 

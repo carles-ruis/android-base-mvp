@@ -1,7 +1,7 @@
 package com.carles.carleskotlin
 
-import com.carles.carleskotlin.poi.data.entity.PoiListResponseDto
-import com.carles.carleskotlin.poi.data.entity.PoiResponseDto
+import com.carles.carleskotlin.poi.data.PoiListResponseDto
+import com.carles.carleskotlin.poi.data.PoiResponseDto
 import com.carles.carleskotlin.poi.model.Poi
 
 internal fun createPoi(id: String) = Poi(id = id)

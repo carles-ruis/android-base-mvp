@@ -1,7 +1,8 @@
-package com.carles.carleskotlin.common.data.datasource
+package com.carles.carleskotlin.common.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.getCacheExpirationTime
+import com.carles.carleskotlin.common.data.BaseLocalDatasource
+import com.carles.carleskotlin.common.data.getCacheExpirationTime
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.assertTrue

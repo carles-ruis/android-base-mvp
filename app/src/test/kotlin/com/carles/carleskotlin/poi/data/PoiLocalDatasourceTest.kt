@@ -1,8 +1,7 @@
-package com.carles.carleskotlin.poi.data.datasource
+package com.carles.carleskotlin.poi.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.setCacheExpirationTime
-import com.carles.carleskotlin.poi.data.entity.PoiRealmObject
+import com.carles.carleskotlin.common.data.setCacheExpirationTime
 import com.carles.carleskotlin.poi.model.Poi
 import io.mockk.*
 import io.realm.Realm
@@ -62,7 +61,7 @@ class PoiLocalDatasourceTest {
         val poi = Poi("some_id")
         every { realm.executeTransaction(any()) } just Runs
         every { realm.close() } just Runs
-        mockkStatic("com.carles.carleskotlin.common.ExtensionsKt")
+        mockkStatic("com.carles.carleskotlin.common.data.DataExtensionsKt")
         every { sharedPreferences.setCacheExpirationTime(any(), any(), any()) } just Runs
 
         datasource.persist(poi)

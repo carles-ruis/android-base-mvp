@@ -1,7 +1,7 @@
 package com.carles.carleskotlin.poi.repository
 
-import com.carles.carleskotlin.poi.data.datasource.PoiCloudDatasource
-import com.carles.carleskotlin.poi.data.datasource.PoiLocalDatasource
+import com.carles.carleskotlin.poi.data.PoiCloudDatasource
+import com.carles.carleskotlin.poi.data.PoiLocalDatasource
 import com.carles.carleskotlin.poi.model.Poi
 import io.reactivex.Maybe
 import io.reactivex.Single

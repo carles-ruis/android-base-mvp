@@ -1,9 +1,6 @@
-package com.carles.carleskotlin.poi.data.datasource
+package com.carles.carleskotlin.poi.data
 
-import com.carles.carleskotlin.poi.data.entity.PoiListResponseDto
-import com.carles.carleskotlin.poi.data.entity.PoiResponseDto
 import com.carles.carleskotlin.poi.model.Poi
-import com.carles.carleskotlin.poi.toModel
 import io.mockk.*
 import io.reactivex.Single
 import org.junit.Before
@@ -24,7 +21,7 @@ class PoiCloudDatasourceTest {
 
     @Test
     fun getPoiList_shouldPerformRequest() {
-        mockkStatic("com.carles.carleskotlin.poi.PoiExtensionsKt")
+        mockkStatic("com.carles.carleskotlin.poi.data.DTOKt")
         val poiListDto = PoiListResponseDto()
         every { service.getPoiList() } returns Single.just(poiListDto)
         every { poiListDto.toModel() } returns poiList
@@ -36,7 +33,7 @@ class PoiCloudDatasourceTest {
 
     @Test
     fun getPoiDetail_shouldPerformRequest() {
-        mockkStatic("com.carles.carleskotlin.poi.PoiExtensionsKt")
+        mockkStatic("com.carles.carleskotlin.poi.data.DTOKt")
         val poiDetailDto = PoiResponseDto("some_id")
         every { service.getPoiDetail("some_id") } returns Single.just(poiDetailDto)
         every { poiDetailDto.toModel() } returns poiDetail

@@ -1,9 +1,9 @@
 package com.carles.carleskotlin
 
 import android.preference.PreferenceManager
-import com.carles.carleskotlin.poi.data.datasource.PoiCloudDatasource
-import com.carles.carleskotlin.poi.data.datasource.PoiLocalDatasource
-import com.carles.carleskotlin.poi.data.datasource.PoiService
+import com.carles.carleskotlin.poi.data.PoiCloudDatasource
+import com.carles.carleskotlin.poi.data.PoiLocalDatasource
+import com.carles.carleskotlin.poi.data.PoiService
 import com.carles.carleskotlin.poi.repository.PoiRepository
 import com.carles.carleskotlin.poi.ui.PoiDetailPresenter
 import com.carles.carleskotlin.poi.ui.PoiDetailView
@@ -11,7 +11,6 @@ import com.carles.carleskotlin.poi.ui.PoiListPresenter
 import com.carles.carleskotlin.poi.ui.PoiListView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.Schedulers.single
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
 import retrofit2.Retrofit

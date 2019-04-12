@@ -1,23 +1,23 @@
-package com.carles.carleskotlin.poi
+package com.carles.carleskotlin.poi.data
 
 import com.carles.carleskotlin.createEmptyPoiListResponseDto
 import com.carles.carleskotlin.createPoi
 import com.carles.carleskotlin.createPoiListResponseDto
 import com.carles.carleskotlin.createPoiResponseDto
-import com.carles.carleskotlin.poi.data.entity.PoiRealmObject
 import com.carles.carleskotlin.poi.model.Poi
-import org.junit.Assert.*
+import junit.framework.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Test
-import java.util.Collections.emptyList
+import java.util.*
 
-class PoiExtensionsTest {
+class MapperTest {
 
     @Test
     fun poiListResponseDto_toModel() {
-        assertEquals(emptyList<Poi>(), createEmptyPoiListResponseDto().toModel())
+        Assert.assertEquals(Collections.emptyList<Poi>(), createEmptyPoiListResponseDto().toModel())
 
         val dto = createPoiListResponseDto()
-        assertTrue(with(dto.toModel()) {
+        Assert.assertTrue(with(dto.toModel()) {
             size == dto.list!!.size && get(0).id == dto.list!!.get(0).id
         })
     }
@@ -25,19 +25,19 @@ class PoiExtensionsTest {
     @Test
     fun poiResponseDto_toModel() {
         val dto = createPoiResponseDto()
-        assertTrue(with(dto.toModel()) {
+        Assert.assertTrue(with(dto.toModel()) {
             id == dto.id && title == dto.title && transport == dto.transport && email == dto.email && phone == dto.phone
         })
 
-        dto.transport = ""; assertNull(dto.toModel().transport)
-        dto.email = "null"; assertNull(dto.toModel().email)
-        dto.phone = "undefined"; assertNull(dto.toModel().phone)
+        dto.transport = ""; Assert.assertNull(dto.toModel().transport)
+        dto.email = "null"; Assert.assertNull(dto.toModel().email)
+        dto.phone = "undefined"; Assert.assertNull(dto.toModel().phone)
     }
 
     @Test
     fun poi_toRealmObject() {
         val poi = createPoi(System.currentTimeMillis().toString())
-        assertEquals(poi.id, poi.toRealmObject().id)
+        Assert.assertEquals(poi.id, poi.toRealmObject().id)
     }
 
     @Test
