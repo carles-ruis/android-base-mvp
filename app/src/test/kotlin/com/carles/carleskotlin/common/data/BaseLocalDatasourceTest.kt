@@ -1,23 +1,15 @@
 package com.carles.carleskotlin.common.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.data.BaseLocalDatasource
-import com.carles.carleskotlin.common.data.getCacheExpirationTime
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 
 class BaseLocalDatasourceTest {
 
-    private lateinit var datasource: BaseLocalDatasource
-    private val sharedPreferences: SharedPreferences = mockk(relaxed = true)
-
-    @Before
-    fun setup() {
-        datasource = object : BaseLocalDatasource(sharedPreferences) {}
-    }
+    val sharedPreferences: SharedPreferences = mockk(relaxed = true)
+    val datasource = object : BaseLocalDatasource(sharedPreferences) {}
 
     @Test
     fun calculateCacheExpirationTime_shouldReturnFutureTime() {

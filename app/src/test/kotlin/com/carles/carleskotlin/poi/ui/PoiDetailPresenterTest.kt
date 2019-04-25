@@ -8,20 +8,14 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
-import org.junit.Before
 import org.junit.Test
 
 class PoiDetailPresenterTest {
 
-    private lateinit var presenter: PoiDetailPresenter
-    private val view: PoiDetailView = mockk(relaxed = true)
-    private val testScheduler = TestScheduler()
-    private val poiRepository: PoiRepository = mockk()
-
-    @Before
-    fun setup() {
-        presenter = PoiDetailPresenter(view, "some_id", testScheduler, testScheduler, poiRepository)
-    }
+    val view: PoiDetailView = mockk(relaxed = true)
+    val testScheduler = TestScheduler()
+    val poiRepository: PoiRepository = mockk()
+    val presenter = PoiDetailPresenter(view, "some_id", testScheduler, testScheduler, poiRepository)
 
     @Test
     fun onViewCreated_getPoiDetailSuccess() {

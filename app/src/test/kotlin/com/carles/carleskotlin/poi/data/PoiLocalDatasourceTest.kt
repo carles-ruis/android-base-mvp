@@ -10,15 +10,14 @@ import org.junit.Test
 
 class PoiLocalDatasourceTest {
 
-    private lateinit var datasource: PoiLocalDatasource
-    private val sharedPreferences: SharedPreferences = mockk()
-    private val realm: Realm = mockk()
+    val sharedPreferences: SharedPreferences = mockk()
+    val realm: Realm = mockk()
+    val datasource = PoiLocalDatasource(sharedPreferences)
 
     @Before
     fun setup() {
         mockkStatic("io.realm.Realm")
         every { Realm.getDefaultInstance() } returns realm
-        datasource = PoiLocalDatasource(sharedPreferences)
     }
 
     @Test

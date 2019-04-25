@@ -6,17 +6,11 @@ import io.mockk.just
 import io.mockk.mockk
 import io.reactivex.disposables.Disposable
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Test
 
 class BasePresenterTest {
 
-    private lateinit var presenter : BasePresenter<BaseView>
-
-    @Before
-    fun setup() {
-        presenter = object : BasePresenter<BaseView>(mockk()) {}
-    }
+    val presenter = object : BasePresenter<BaseView>(mockk()) {}
 
     @Test
     fun onViewDestroyed_shouldDispose() {

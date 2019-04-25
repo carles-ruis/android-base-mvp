@@ -8,19 +8,13 @@ import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Maybe
 import io.reactivex.Single
-import org.junit.Before
 import org.junit.Test
 
 class PoiRepositoryTest {
 
-    private lateinit var poiRepository: PoiRepository
-    private val poiLocalDatasource: PoiLocalDatasource = mockk()
-    private val poiCloudDatasource: PoiCloudDatasource = mockk()
-
-    @Before
-    fun setup() {
-        poiRepository = PoiRepository(poiLocalDatasource, poiCloudDatasource)
-    }
+    val poiLocalDatasource: PoiLocalDatasource = mockk()
+    val poiCloudDatasource: PoiCloudDatasource = mockk()
+    val poiRepository = PoiRepository(poiLocalDatasource, poiCloudDatasource)
 
     @Test
     fun getPoiList_getListFromLocal() {
