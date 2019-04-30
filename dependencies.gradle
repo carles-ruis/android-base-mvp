@@ -27,9 +27,6 @@ ext {
             koin                 : "org.koin:koin-android:$koinVersion",
             koinScope            : "org.koin:koin-android-scope:$koinVersion",
             koinViewModel        : "org.koin:koin-android-viewmodel:$koinVersion",
-            lifecycleExtensions  : "android.arch.lifecycle:extensions:$lifecycleVersion",
-            roomRuntime          : "android.arch.persistence.room:runtime:$roomVersion",
-            roomCompiler         : "android.arch.persistence.room:compiler:$roomVersion",
 
             jUnit                : "junit:junit:$jUnitVersion",
             testRunner           : "com.android.support.test:runner:$testRunnerVersion",
