@@ -2,6 +2,7 @@ package com.carles.carleskotlin.poi.data
 
 import android.content.SharedPreferences
 import com.carles.carleskotlin.common.data.setCacheExpirationTime
+import com.carles.carleskotlin.createPoi
 import com.carles.carleskotlin.poi.model.Poi
 import io.mockk.*
 import io.realm.Realm
@@ -37,27 +38,27 @@ class PoiLocalDatasourceTest {
     fun getPoiDetail_shouldReturnNoValuesIfNoData() {
         val spy = spyk(datasource)
         every { spy.isExpired(any(), any()) } returns false
-        every { realm.where(PoiRealmObject::class.java).equalTo(any(), any<String>()).findFirst() } returns null
+        every { realm.where(PoiVo::class.java).equalTo(any(), any<String>()).findFirst() } returns null
         every { realm.close() } just Runs
 
         spy.getPoiDetail("some_id").test().assertNoValues().assertComplete()
-        verify { realm.where(PoiRealmObject::class.java); realm.close() }
+        verify { realm.where(PoiVo::class.java); realm.close() }
     }
 
     @Test
     fun getPoiDetail_shouldReturnStoredValues() {
         val spy = spyk(datasource)
         every { spy.isExpired(any(), any()) } returns false
-        every { realm.where(PoiRealmObject::class.java).equalTo(any(), any<String>()).findFirst() } returns PoiRealmObject("some_id")
+        every { realm.where(PoiVo::class.java).equalTo(any(), any<String>()).findFirst() } returns PoiVo("some_id")
         every { realm.close() } just Runs
 
-        spy.getPoiDetail("some_id").test().assertValue(Poi("some_id")).assertComplete()
-        verify { realm.where(PoiRealmObject::class.java); realm.close() }
+        spy.getPoiDetail("some_id").test().assertValue(createPoi("some_id")).assertComplete()
+        verify { realm.where(PoiVo::class.java); realm.close() }
     }
 
     @Test
     fun persist_shouldPersistToRealm() {
-        val poi = Poi("some_id")
+        val poi = createPoi("some_id")
         every { realm.executeTransaction(any()) } just Runs
         every { realm.close() } just Runs
         mockkStatic("com.carles.carleskotlin.common.data.DataExtensionsKt")
@@ -68,7 +69,7 @@ class PoiLocalDatasourceTest {
         verify {
             realm.executeTransaction(any())
             realm.close()
-            sharedPreferences.setCacheExpirationTime(PoiRealmObject::class.java.name, "some_id", any())
+            sharedPreferences.setCacheExpirationTime(PoiVo::class.java.name, "some_id", any())
         }
     }
 }

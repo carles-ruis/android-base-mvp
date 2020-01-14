@@ -1,7 +1,7 @@
 package com.carles.carleskotlin.poi.model
 
 data class Poi(
-    val id: String,
+    val id: String = "",
     val title: String? = null,
     val address: String? = null,
     val transport: String? = null,

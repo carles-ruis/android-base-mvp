@@ -25,7 +25,7 @@ class PoiListActivity : BaseActivity<PoiListPresenter>(), PoiListView {
     }
 
     override fun displayPoiList(poiList: List<Poi>) {
-        adapter.setItems(poiList)
+        adapter.items = poiList
     }
 
     override fun navigateToPoiDetail(id: String) {

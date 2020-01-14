@@ -4,7 +4,7 @@ import com.carles.carleskotlin.poi.model.Poi
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-open class PoiRealmObject(
+open class PoiVo(
         @PrimaryKey var id: String = "",
         var title: String? = null,
         var address: String? = null,
@@ -20,7 +20,7 @@ open class PoiRealmObject(
     }
 }
 
-fun Poi.toRealmObject(): PoiRealmObject =
-        PoiRealmObject(id, title, address, transport, description, email, phone, geocoordinates)
+fun Poi.toVo(): PoiVo =
+        PoiVo(id, title, address, transport, description, email, phone, geocoordinates)
 
-fun PoiRealmObject.toModel(): Poi = Poi(id, title, address, transport, description, email, phone, geocoordinates)
+fun PoiVo.toModel(): Poi = Poi(id, title, address, transport, description, email, phone, geocoordinates)

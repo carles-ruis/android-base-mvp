@@ -37,12 +37,12 @@ class MapperTest {
     @Test
     fun poi_toRealmObject() {
         val poi = createPoi(System.currentTimeMillis().toString())
-        Assert.assertEquals(poi.id, poi.toRealmObject().id)
+        Assert.assertEquals(poi.id, poi.toVo().id)
     }
 
     @Test
     fun poiRealmObject_toModel() {
-        val poiRealmObject = PoiRealmObject(id = System.currentTimeMillis().toString())
+        val poiRealmObject = PoiVo(id = System.currentTimeMillis().toString())
         assertEquals(poiRealmObject.id, poiRealmObject.toModel().id)
     }
 }

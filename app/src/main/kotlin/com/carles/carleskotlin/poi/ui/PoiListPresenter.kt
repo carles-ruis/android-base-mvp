@@ -1,6 +1,7 @@
 package com.carles.carleskotlin.poi.ui
 
 import com.carles.carleskotlin.common.ui.BasePresenter
+import com.carles.carleskotlin.common.ui.addTo
 import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.model.Poi
 import com.carles.carleskotlin.poi.repository.PoiRepository
@@ -15,10 +16,10 @@ class PoiListPresenter(poiListView: PoiListView, val uiScheduler: Scheduler, val
 
     private fun getPoiList() {
         view.showProgress()
-        addDisposable(poiRepository.getPoiList().subscribeOn(processScheduler).observeOn(uiScheduler).subscribe(
-            { view.hideProgress(); view.displayPoiList(it) },
-            { view.showError(messageId = it.getMessageId(), onRetry = { getPoiList() }) }
-        ))
+        poiRepository.getPoiList().subscribeOn(processScheduler).observeOn(uiScheduler).subscribe(
+                { view.hideProgress(); view.displayPoiList(it) },
+                { view.showError(messageId = it.getMessageId(), onRetry = { getPoiList() }) }
+        ).addTo(disposables)
     }
 
     fun onPoiClicked(poi: Poi) {

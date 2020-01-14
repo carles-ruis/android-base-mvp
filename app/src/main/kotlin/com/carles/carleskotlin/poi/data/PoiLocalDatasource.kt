@@ -14,9 +14,9 @@ class PoiLocalDatasource(sharedPreferences: SharedPreferences) : BaseLocalDataso
 
     fun getPoiDetail(id:String) : Maybe<Poi> = Maybe.defer {
         var poi : Poi? = null
-        if (!isExpired(PoiRealmObject::class.java.name, id)) {
+        if (!isExpired(PoiVo::class.java.name, id)) {
             val realm = Realm.getDefaultInstance()
-            val poiRealmObject = realm.where<PoiRealmObject>().equalTo(PoiRealmObject.ID, id).findFirst()
+            val poiRealmObject = realm.where<PoiVo>().equalTo(PoiVo.ID, id).findFirst()
             poi = poiRealmObject?.toModel()
             realm.close()
         }
@@ -24,13 +24,13 @@ class PoiLocalDatasource(sharedPreferences: SharedPreferences) : BaseLocalDataso
     }
 
     fun persist(poi:Poi){
-        val poiRealmObject = poi.toRealmObject()
+        val poiRealmObject = poi.toVo()
         val realm = Realm.getDefaultInstance()
         realm.executeTransaction {
             it.copyToRealmOrUpdate(poiRealmObject)
         }
         realm.close()
-        sharedPreferences.setCacheExpirationTime(PoiRealmObject::class.java.name, poi.id, calculateCacheExpirationTime())
+        sharedPreferences.setCacheExpirationTime(PoiVo::class.java.name, poi.id, calculateCacheExpirationTime())
     }
 
 }

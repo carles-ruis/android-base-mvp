@@ -1,6 +1,7 @@
 package com.carles.carleskotlin.poi.ui
 
 import com.carles.carleskotlin.common.ui.BasePresenter
+import com.carles.carleskotlin.common.ui.addTo
 import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.repository.PoiRepository
 import io.reactivex.Scheduler
@@ -14,9 +15,9 @@ class PoiDetailPresenter(poiDetailView: PoiDetailView, private val id: String, v
 
     private fun getPoiDetail() {
         view.showProgress()
-        addDisposable(poiRepository.getPoiDetail(id).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe(
-            { view.hideProgress(); view.displayPoiDetail(it) },
-            { view.showError(it.getMessageId(), { getPoiDetail() }) }
-        ))
+        poiRepository.getPoiDetail(id).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe(
+                { view.hideProgress(); view.displayPoiDetail(it) },
+                { view.showError(it.getMessageId(), { getPoiDetail() }) }
+        ).addTo(disposables)
     }
 }
