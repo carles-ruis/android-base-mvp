@@ -5,15 +5,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion androidCompileSdkVersion
 
     defaultConfig {
         applicationId "com.carles.carleskotlin"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
     buildTypes {
@@ -38,17 +37,18 @@ androidExtensions {
 }
 
 dependencies {
-    implementation appDependencies.kotlin
-    implementation appDependencies.design
-    implementation appDependencies.recyclerview
-    implementation appDependencies.constraintLayout
-    implementation appDependencies.support
-    implementation appDependencies.rxJava
-    implementation appDependencies.rxAndroid
-    implementation appDependencies.retrofit
-    implementation appDependencies.retrofitConverterGson
-    implementation appDependencies.retrofitAdapterRxJava
-    implementation appDependencies.koin
-    testImplementation appDependencies.jUnit
-    testImplementation appDependencies.mockk
+    implementation libraries.kotlin
+    implementation libraries.design
+    implementation libraries.recyclerview
+    implementation libraries.constraintLayout
+    implementation libraries.support
+    implementation libraries.rxJava
+    implementation libraries.rxAndroid
+    implementation libraries.retrofit
+    implementation libraries.retrofitConverterGson
+    implementation libraries.retrofitAdapterRxJava
+    implementation libraries.koin
+
+    testImplementation libraries.jUnit
+    testImplementation libraries.mockk
 }
