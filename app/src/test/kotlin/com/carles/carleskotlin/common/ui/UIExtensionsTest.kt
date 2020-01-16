@@ -4,7 +4,7 @@ import com.carles.carleskotlin.R
 import org.junit.Assert
 import org.junit.Test
 
-class UiExtensionsTest {
+class UIExtensionsTest {
     @Test
     fun throwable_shouldGetMessageId() {
         Assert.assertEquals(R.string.error_server_response, Throwable().getMessageId())

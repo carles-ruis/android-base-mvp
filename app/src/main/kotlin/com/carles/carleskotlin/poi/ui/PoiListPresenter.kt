@@ -5,9 +5,11 @@ import com.carles.carleskotlin.common.ui.addTo
 import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.model.Poi
 import com.carles.carleskotlin.poi.repository.PoiRepository
+import com.carles.carleskotlin.poi.ui.PoiListView
 import io.reactivex.Scheduler
 
-class PoiListPresenter(poiListView: PoiListView, val uiScheduler: Scheduler, val processScheduler: Scheduler, val poiRepository: PoiRepository) : BasePresenter<PoiListView>(poiListView) {
+class PoiListPresenter(poiListView: PoiListView, val uiScheduler: Scheduler, val processScheduler: Scheduler,
+                       val poiRepository: PoiRepository) : BasePresenter<PoiListView>(poiListView) {
 
     override fun onViewCreated() {
         super.onViewCreated()
@@ -16,15 +18,21 @@ class PoiListPresenter(poiListView: PoiListView, val uiScheduler: Scheduler, val
 
     private fun getPoiList() {
         view.showProgress()
-        poiRepository.getPoiList().subscribeOn(processScheduler).observeOn(uiScheduler).subscribe(
-                { view.hideProgress(); view.displayPoiList(it) },
-                { view.showError(messageId = it.getMessageId(), onRetry = { getPoiList() }) }
-        ).addTo(disposables)
+        poiRepository.getPoiList().subscribeOn(processScheduler).observeOn(uiScheduler)
+                .subscribe(::onGetPoiListSuccess, ::onGetPoiListError)
+                .addTo(disposables)
+    }
+
+    private fun onGetPoiListSuccess(pois: List<Poi>) {
+        view.hideProgress()
+        view.displayPoiList(pois)
+    }
+
+    private fun onGetPoiListError(throwable: Throwable) {
+        view.showError(throwable.getMessageId()) { getPoiList() }
     }
 
     fun onPoiClicked(poi: Poi) {
         view.navigateToPoiDetail(poi.id)
     }
-
-
 }

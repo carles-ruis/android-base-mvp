@@ -38,10 +38,12 @@ androidExtensions {
 
 dependencies {
     implementation libraries.kotlin
-    implementation libraries.design
+    implementation libraries.appcompat
+    implementation libraries.material
     implementation libraries.recyclerview
     implementation libraries.constraintLayout
-    implementation libraries.support
+    implementation libraries.preference
+
     implementation libraries.rxJava
     implementation libraries.rxAndroid
     implementation libraries.retrofit

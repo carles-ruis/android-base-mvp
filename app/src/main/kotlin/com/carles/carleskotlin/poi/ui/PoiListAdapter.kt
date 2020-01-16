@@ -1,8 +1,8 @@
 package com.carles.carleskotlin.poi.ui
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.carles.carleskotlin.R
 import com.carles.carleskotlin.common.ui.inflate
 import com.carles.carleskotlin.poi.model.Poi

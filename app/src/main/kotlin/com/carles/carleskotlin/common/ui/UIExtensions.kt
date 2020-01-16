@@ -1,8 +1,8 @@
 package com.carles.carleskotlin.common.ui
 
-import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import com.carles.carleskotlin.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

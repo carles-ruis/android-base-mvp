@@ -13,8 +13,4 @@ abstract class BasePresenter<out V : BaseView>(protected val view: V) {
         if (!disposables.isDisposed) disposables.dispose()
     }
 
-    internal fun addDisposable(disposable: Disposable) {
-        disposables.add(disposable)
-    }
-
 }

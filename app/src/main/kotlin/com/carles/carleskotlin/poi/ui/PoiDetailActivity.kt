@@ -8,7 +8,7 @@ import com.carles.carleskotlin.R
 import com.carles.carleskotlin.common.ui.BaseActivity
 import com.carles.carleskotlin.poi.model.Poi
 import kotlinx.android.synthetic.main.activity_poi_detail.*
-import kotlinx.android.synthetic.main.view_toolbar.*
+import kotlinx.android.synthetic.main.view_toolbar.toolbar
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -39,7 +39,7 @@ class PoiDetailActivity : BaseActivity<PoiDetailPresenter>(), PoiDetailView {
     }
 
     companion object {
-        private val EXTRA_ID = "poi_detail_extra_id"
+        private const val EXTRA_ID = "poi_detail_extra_id"
         fun newIntent(context: Context, id: String) = Intent(context, PoiDetailActivity::class.java).apply { putExtra(EXTRA_ID, id) }
     }
 }

@@ -1,12 +1,13 @@
 package com.carles.carleskotlin.common.ui
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.carles.carleskotlin.R
-import kotlinx.android.synthetic.main.layout_progressbar.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.view_progress.*
 
 abstract class BaseActivity<P : BasePresenter<BaseView>> : AppCompatActivity(), BaseView {
 
@@ -36,11 +37,11 @@ abstract class BaseActivity<P : BasePresenter<BaseView>> : AppCompatActivity(), 
     override fun getContext() = this
 
     override fun showProgress() {
-        progressbar_layout?.visibility = VISIBLE
+        progress?.visibility = VISIBLE
     }
 
     override fun hideProgress() {
-        progressbar_layout?.visibility = GONE
+        progress?.visibility = GONE
     }
 
     override fun showError(messageId: Int, onRetry: (() -> Unit)?) {
@@ -49,10 +50,9 @@ abstract class BaseActivity<P : BasePresenter<BaseView>> : AppCompatActivity(), 
 
         val isShowing = alertDialog?.isShowing ?: false
         if (!isShowing) {
-            val alertDialogBuilder = AlertDialog.Builder(this).setMessage(messageId)
+            val alertDialogBuilder = MaterialAlertDialogBuilder(this).setMessage(messageId)
             if (onRetry != null) {
-                alertDialogBuilder.setCancelable(false)
-                    .setPositiveButton(R.string.error_retry) { _, _ -> onRetry() }
+                alertDialogBuilder.setCancelable(false).setPositiveButton(R.string.error_retry) { _, _ -> onRetry() }
             }
             alertDialogBuilder.create().show()
         }

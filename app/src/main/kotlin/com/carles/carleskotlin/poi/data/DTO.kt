@@ -3,10 +3,10 @@ package com.carles.carleskotlin.poi.data
 import com.carles.carleskotlin.poi.model.Poi
 import com.google.gson.annotations.SerializedName
 
-data class PoiListResponseDto(@SerializedName("list") var list: List<PoiResponseDto>? = null)
+data class PoiListResponseDto(var list: List<PoiResponseDto>? = null)
 
 data class PoiResponseDto(
-        @SerializedName("id") var id: String,
+        var id: String,
         var title: String? = null,
         var address: String? = null,
         var transport: String? = null,

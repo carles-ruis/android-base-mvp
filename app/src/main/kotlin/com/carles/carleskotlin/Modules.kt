@@ -1,6 +1,6 @@
 package com.carles.carleskotlin
 
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.carles.carleskotlin.poi.data.PoiCloudDatasource
 import com.carles.carleskotlin.poi.data.PoiLocalDatasource
 import com.carles.carleskotlin.poi.data.PoiService
@@ -21,7 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val BASE_URL = "https://t21services.herokuapp.com"
 private val uiScheduler = named("uiScheduler")
 private val processScheduler = named("processScheduler")
-private fun providePoiService(retrofit: Retrofit) = retrofit.create(PoiService::class.java)
 
 val appModule = module {
     single { PreferenceManager.getDefaultSharedPreferences(androidContext()) }
@@ -38,7 +37,7 @@ val appModule = module {
 }
 
 val poiModule = module {
-    single { providePoiService(get()) }
+    single { (get() as Retrofit).create(PoiService::class.java) }
     single { PoiLocalDatasource(get()) }
     single { PoiCloudDatasource(get(), get()) }
     single { PoiRepository(get(), get()) }
