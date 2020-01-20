@@ -18,11 +18,12 @@ ext {
     rxJavaVersion = '2.2.17'
     rxAndroidVersion = '2.1.1'
     retrofitVersion = '2.5.0'
+    koinVersion = '2.1.0-alpha-10'
+
     jUnitVersion = '4.13'
     testRunnerVersion = '1.1.1'
-    espressoVersion = '3.0.1'
+    espressoVersion = '3.2.0'
     mockkVersion = '1.9.3'
-    koinVersion = '2.1.0-alpha-10'
 
     buildPlugins = [
             toolsGradlePlugin    : "com.android.tools.build:gradle:$buildToolsVersion",
@@ -44,8 +45,10 @@ ext {
             retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             koin                 : "org.koin:koin-android:$koinVersion",
-            koinScope            : "org.koin:koin-android-scope:$koinVersion",
+            koinScope            : "org.koin:koin-android-scope:$koinVersion"
+    ]
 
+    testLibraries = [
             jUnit                : "junit:junit:$jUnitVersion",
             testRunner           : "com.android.support.test:runner:$testRunnerVersion",
             espresso             : "com.android.support.test.espresso:espresso-core:$espressoVersion",

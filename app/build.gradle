@@ -7,6 +7,10 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion androidCompileSdkVersion
 
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+
     defaultConfig {
         applicationId "com.carles.carleskotlin"
         minSdkVersion androidMinSdkVersion
@@ -51,6 +55,8 @@ dependencies {
     implementation libraries.retrofitAdapterRxJava
     implementation libraries.koin
 
-    testImplementation libraries.jUnit
-    testImplementation libraries.mockk
+    testImplementation testLibraries.jUnit
+    testImplementation testLibraries.mockk
+    androidTestImplementation testLibraries.testRunner
+
 }
