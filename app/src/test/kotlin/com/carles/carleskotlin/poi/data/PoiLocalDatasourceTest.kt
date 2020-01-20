@@ -1,6 +1,7 @@
 package com.carles.carleskotlin.poi.data
 
 import android.content.SharedPreferences
+import com.carles.carleskotlin.common.data.cacheId
 import com.carles.carleskotlin.common.data.setCacheExpirationTime
 import com.carles.carleskotlin.createPoi
 import com.carles.carleskotlin.poi.model.Poi
@@ -69,7 +70,7 @@ class PoiLocalDatasourceTest {
         verify {
             realm.executeTransaction(any())
             realm.close()
-            sharedPreferences.setCacheExpirationTime(PoiVo::class.java.name, "some_id", any())
+            sharedPreferences.setCacheExpirationTime(any(), "some_id", any())
         }
     }
 }

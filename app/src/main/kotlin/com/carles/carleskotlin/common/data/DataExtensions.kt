@@ -1,6 +1,8 @@
 package com.carles.carleskotlin.common.data
 
 import android.content.SharedPreferences
+import org.koin.ext.getFullName
+import kotlin.reflect.KClass
 
 private val PREFERENCE_EXPIRATION_TIME_PREFIX = "expiration_time_"
 
@@ -12,4 +14,4 @@ fun SharedPreferences.setCacheExpirationTime(className: String, itemId: String, 
 }
 
 val <T : Any> T.cacheId : String
-    get() = javaClass.simpleName
+    get() = this::class.getFullName()

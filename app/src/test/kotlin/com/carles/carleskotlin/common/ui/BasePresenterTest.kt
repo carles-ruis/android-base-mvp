@@ -14,16 +14,14 @@ class BasePresenterTest {
 
     @Test
     fun onViewDestroyed_shouldDispose() {
-        val disposable : Disposable = mockk()
-        every { disposable.dispose() } just Runs
-        presenter.addDisposable(disposable)
+        mockk<Disposable>(relaxed = true).addTo(presenter.disposables)
         presenter.onViewDestroyed()
         assertTrue(presenter.disposables.isDisposed)
     }
 
     @Test
     fun addDisposable_shouldAdd() {
-        presenter.addDisposable(mockk())
+        mockk<Disposable>().addTo(presenter.disposables)
         assertEquals(1, presenter.disposables.size())
         assertFalse(presenter.disposables.isDisposed)
     }
