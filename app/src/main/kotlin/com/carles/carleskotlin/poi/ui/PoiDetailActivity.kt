@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.carles.carleskotlin.R
 import com.carles.carleskotlin.common.ui.BaseActivity
+import com.carles.carleskotlin.common.ui.initDefaultToolbar
 import com.carles.carleskotlin.poi.model.Poi
 import kotlinx.android.synthetic.main.activity_poi_detail.*
 import kotlinx.android.synthetic.main.view_toolbar.toolbar
@@ -18,10 +19,7 @@ class PoiDetailActivity : BaseActivity<PoiDetailPresenter>(), PoiDetailView {
     override val presenter: PoiDetailPresenter by inject { parametersOf(this, intent.getStringExtra(EXTRA_ID)) }
 
     override fun initViews() {
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowCustomEnabled(true)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        initDefaultToolbar()
     }
 
     override fun displayPoiDetail(poi: Poi) {

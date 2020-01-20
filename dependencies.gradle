@@ -19,12 +19,10 @@ ext {
     rxAndroidVersion = '2.1.1'
     retrofitVersion = '2.5.0'
     jUnitVersion = '4.13'
-    testRunnerVersion = '1.0.1'
+    testRunnerVersion = '1.1.1'
     espressoVersion = '3.0.1'
     mockkVersion = '1.9.3'
     koinVersion = '2.1.0-alpha-10'
-    lifecycleVersion = '1.1.1'
-    roomVersion = '1.1.1'
 
     buildPlugins = [
             toolsGradlePlugin    : "com.android.tools.build:gradle:$buildToolsVersion",
@@ -47,7 +45,6 @@ ext {
             retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             koin                 : "org.koin:koin-android:$koinVersion",
             koinScope            : "org.koin:koin-android-scope:$koinVersion",
-            koinViewModel        : "org.koin:koin-android-viewmodel:$koinVersion",
 
             jUnit                : "junit:junit:$jUnitVersion",
             testRunner           : "com.android.support.test:runner:$testRunnerVersion",

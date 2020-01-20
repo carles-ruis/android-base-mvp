@@ -27,5 +27,9 @@
             android:name=".poi.ui.PoiDetailActivity"
             android:label="@string/poidetail_title"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>

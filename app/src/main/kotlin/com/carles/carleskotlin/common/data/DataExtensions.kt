@@ -10,3 +10,6 @@ fun SharedPreferences.getCacheExpirationTime(className:String, itemId:String) : 
 fun SharedPreferences.setCacheExpirationTime(className: String, itemId: String, timestamp:Long) {
     edit().putLong(PREFERENCE_EXPIRATION_TIME_PREFIX + className + itemId, timestamp).apply()
 }
+
+val <T : Any> T.cacheId : String
+    get() = javaClass.simpleName
