@@ -9,7 +9,7 @@ import io.reactivex.Maybe
 import io.realm.Realm
 import io.realm.kotlin.where
 
-class PoiLocalDatasource(sharedPreferences: SharedPreferences) : BaseLocalDatasource(sharedPreferences) {
+class PoiLocalDatasource(private val sharedPreferences: SharedPreferences) : BaseLocalDatasource(sharedPreferences) {
 
     fun getPoiList(): Maybe<List<Poi>> = Maybe.empty()
 

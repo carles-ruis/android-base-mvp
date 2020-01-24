@@ -21,7 +21,7 @@ ext {
     koinVersion = '2.1.0-alpha-10'
 
     jUnitVersion = '4.13'
-    testRunnerVersion = '1.1.1'
+    androidTestVersion = '1.1.1'
     espressoVersion = '3.2.0'
     mockkVersion = '1.9.3'
 
@@ -50,7 +50,8 @@ ext {
 
     testLibraries = [
             jUnit                : "junit:junit:$jUnitVersion",
-            testRunner           : "com.android.support.test:runner:$testRunnerVersion",
+            testRunner           : "androidx.test.ext:junit:$androidTestVersion",
+            testRules            : "androidx.test:rules:$androidTestVersion",
             espresso             : "com.android.support.test.espresso:espresso-core:$espressoVersion",
             espressoContrib      : "com.android.support.test.espresso:espresso-contrib:$espressoVersion",
             mockk                : "io.mockk:mockk:$mockkVersion",

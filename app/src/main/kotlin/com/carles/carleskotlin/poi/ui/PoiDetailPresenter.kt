@@ -7,8 +7,13 @@ import com.carles.carleskotlin.poi.model.Poi
 import com.carles.carleskotlin.poi.repository.PoiRepository
 import io.reactivex.Scheduler
 
-class PoiDetailPresenter(poiDetailView: PoiDetailView, private val id: String, val uiScheduler: Scheduler, val processScheduler: Scheduler,
-                         val poiRepository: PoiRepository) : BasePresenter<PoiDetailView>(poiDetailView) {
+class PoiDetailPresenter(
+        poiDetailView: PoiDetailView,
+        private val id: String,
+        private val uiScheduler: Scheduler,
+        private val processScheduler: Scheduler,
+        private val poiRepository: PoiRepository)
+    : BasePresenter<PoiDetailView>(poiDetailView) {
 
     override fun onViewCreated() {
         super.onViewCreated()

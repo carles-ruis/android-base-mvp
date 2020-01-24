@@ -6,7 +6,7 @@ import com.carles.carleskotlin.poi.model.Poi
 import io.reactivex.Maybe
 import io.reactivex.Single
 
-class PoiRepository(val poiLocalDatasource: PoiLocalDatasource, val poiCloudDatasource: PoiCloudDatasource) {
+class PoiRepository(private val poiLocalDatasource: PoiLocalDatasource, private val poiCloudDatasource: PoiCloudDatasource) {
 
     fun getPoiList(): Single<List<Poi>> =
             Maybe.concat(poiLocalDatasource.getPoiList(), poiCloudDatasource.getPoiList().toMaybe()).firstOrError();

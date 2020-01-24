@@ -2,7 +2,7 @@ package com.carles.carleskotlin.common.data
 
 import android.content.SharedPreferences
 
-abstract class BaseLocalDatasource(val sharedPreferences: SharedPreferences) {
+abstract class BaseLocalDatasource(private val sharedPreferences: SharedPreferences) {
 
     private val EXPIRE_TIME = 1000 * 60
 
