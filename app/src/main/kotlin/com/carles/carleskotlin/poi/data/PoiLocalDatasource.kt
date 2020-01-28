@@ -1,21 +1,19 @@
 package com.carles.carleskotlin.poi.data
 
 import android.content.SharedPreferences
-import com.carles.carleskotlin.common.data.BaseLocalDatasource
-import com.carles.carleskotlin.common.data.cacheId
-import com.carles.carleskotlin.common.data.setCacheExpirationTime
+import com.carles.carleskotlin.common.data.*
 import com.carles.carleskotlin.poi.model.Poi
 import io.reactivex.Maybe
 import io.realm.Realm
 import io.realm.kotlin.where
 
-class PoiLocalDatasource(private val sharedPreferences: SharedPreferences) : BaseLocalDatasource(sharedPreferences) {
+class PoiLocalDatasource(private val cache: Cache) {
 
     fun getPoiList(): Maybe<List<Poi>> = Maybe.empty()
 
     fun getPoiDetail(id: String): Maybe<Poi> = Maybe.defer {
         var poi: Poi? = null
-        if (!isExpired(PoiVo.cacheId, id)) {
+        if (!cache.isExpired(CacheItems.POI_VO, id)) {
             val realm = Realm.getDefaultInstance()
             val poiRealmObject = realm.where<PoiVo>().equalTo(PoiVo.ID, id).findFirst()
             poi = poiRealmObject?.toModel()
@@ -31,7 +29,7 @@ class PoiLocalDatasource(private val sharedPreferences: SharedPreferences) : Bas
             it.copyToRealmOrUpdate(poiRealmObject)
         }
         realm.close()
-        sharedPreferences.setCacheExpirationTime(PoiVo.cacheId, poi.id, calculateCacheExpirationTime())
+        cache.set(CacheItems.POI_VO, poi.id)
     }
 
 }

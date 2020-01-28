@@ -4,7 +4,7 @@ import com.carles.carleskotlin.common.ui.BasePresenter
 import com.carles.carleskotlin.common.ui.addTo
 import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.model.Poi
-import com.carles.carleskotlin.poi.repository.PoiRepository
+import com.carles.carleskotlin.poi.data.PoiRepository
 import io.reactivex.Scheduler
 
 class PoiDetailPresenter(

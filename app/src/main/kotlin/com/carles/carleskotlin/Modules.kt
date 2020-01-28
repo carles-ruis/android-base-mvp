@@ -1,10 +1,11 @@
 package com.carles.carleskotlin
 
 import androidx.preference.PreferenceManager
+import com.carles.carleskotlin.common.data.Cache
 import com.carles.carleskotlin.poi.data.PoiCloudDatasource
 import com.carles.carleskotlin.poi.data.PoiLocalDatasource
 import com.carles.carleskotlin.poi.data.PoiService
-import com.carles.carleskotlin.poi.repository.PoiRepository
+import com.carles.carleskotlin.poi.data.PoiRepository
 import com.carles.carleskotlin.poi.ui.PoiDetailPresenter
 import com.carles.carleskotlin.poi.ui.PoiDetailView
 import com.carles.carleskotlin.poi.ui.PoiListPresenter
@@ -23,7 +24,7 @@ private val uiScheduler = named("uiScheduler")
 private val processScheduler = named("processScheduler")
 
 val appModule = module {
-    single { PreferenceManager.getDefaultSharedPreferences(androidContext()) }
+    single { Cache() }
     single(uiScheduler) { AndroidSchedulers.mainThread() }
     single(processScheduler) { Schedulers.io() }
 

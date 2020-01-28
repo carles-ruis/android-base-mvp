@@ -3,6 +3,7 @@ package com.carles.carleskotlin.poi.repository
 import com.carles.carleskotlin.createPoiList
 import com.carles.carleskotlin.poi.data.PoiCloudDatasource
 import com.carles.carleskotlin.poi.data.PoiLocalDatasource
+import com.carles.carleskotlin.poi.data.PoiRepository
 import com.carles.carleskotlin.poi.model.Poi
 import io.mockk.every
 import io.mockk.mockk

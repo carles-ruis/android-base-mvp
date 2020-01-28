@@ -1,4 +1,4 @@
-package com.carles.carleskotlin.poi.repository
+package com.carles.carleskotlin.poi.data
 
 import com.carles.carleskotlin.poi.data.PoiCloudDatasource
 import com.carles.carleskotlin.poi.data.PoiLocalDatasource

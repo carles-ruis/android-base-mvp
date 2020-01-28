@@ -1,10 +1,9 @@
 package com.carles.carleskotlin.poi.data
 
-import com.carles.carleskotlin.common.data.BaseCloudDatasource
 import com.carles.carleskotlin.poi.model.Poi
 import io.reactivex.Single
 
-class PoiCloudDatasource(private val poiLocalDatasource: PoiLocalDatasource, private val poiService: PoiService) : BaseCloudDatasource() {
+class PoiCloudDatasource(private val poiLocalDatasource: PoiLocalDatasource, private val poiService: PoiService) {
 
     fun getPoiList(): Single<List<Poi>> = poiService.getPoiList().map { it.toModel() }
 

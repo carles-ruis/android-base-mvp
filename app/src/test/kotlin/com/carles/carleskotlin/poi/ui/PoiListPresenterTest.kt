@@ -3,7 +3,7 @@ package com.carles.carleskotlin.poi.ui
 import com.carles.carleskotlin.R
 import com.carles.carleskotlin.createPoi
 import com.carles.carleskotlin.createPoiList
-import com.carles.carleskotlin.poi.repository.PoiRepository
+import com.carles.carleskotlin.poi.data.PoiRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
