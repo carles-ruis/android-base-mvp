@@ -1,7 +1,7 @@
 package com.carles.carleskotlin.poi.data
 
-import android.content.SharedPreferences
-import com.carles.carleskotlin.common.data.*
+import com.carles.carleskotlin.common.data.Cache
+import com.carles.carleskotlin.common.data.CacheItems
 import com.carles.carleskotlin.poi.model.Poi
 import io.reactivex.Maybe
 import io.realm.Realm
