@@ -13,7 +13,7 @@ import org.junit.Test
 
 class PoiRepositoryTest {
 
-    val poiLocalDatasource: PoiLocalDatasource = mockk()
+    val poiLocalDatasource: PoiLocalDatasource = mockk(relaxed = true)
     val poiCloudDatasource: PoiCloudDatasource = mockk()
     val poiRepository = PoiRepository(poiLocalDatasource, poiCloudDatasource)
 

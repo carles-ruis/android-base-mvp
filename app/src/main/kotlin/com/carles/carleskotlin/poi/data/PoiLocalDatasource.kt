@@ -13,7 +13,7 @@ class PoiLocalDatasource(private val cache: Cache) {
 
     fun getPoiDetail(id: String): Maybe<Poi> = Maybe.defer {
         var poi: Poi? = null
-        if (!cache.isExpired(CacheItems.POI_VO, id)) {
+        if (cache.isCached(CacheItems.POI_VO, id)) {
             val realm = Realm.getDefaultInstance()
             val poiRealmObject = realm.where<PoiVo>().equalTo(PoiVo.ID, id).findFirst()
             poi = poiRealmObject?.toModel()

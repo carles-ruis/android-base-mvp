@@ -4,14 +4,11 @@ import com.carles.carleskotlin.common.ui.BasePresenter
 import com.carles.carleskotlin.common.ui.addTo
 import com.carles.carleskotlin.common.ui.getMessageId
 import com.carles.carleskotlin.poi.model.Poi
-import com.carles.carleskotlin.poi.data.PoiRepository
-import io.reactivex.Scheduler
+import com.carles.carleskotlin.poi.usecase.GetPoiListUsecase
 
 class PoiListPresenter(
     poiListView: PoiListView,
-    val uiScheduler: Scheduler,
-    val processScheduler: Scheduler,
-    val poiRepository: PoiRepository
+    private val getPoiListUsecase: GetPoiListUsecase
 ) : BasePresenter<PoiListView>(poiListView) {
 
     override fun onViewCreated() {
@@ -21,9 +18,7 @@ class PoiListPresenter(
 
     private fun getPoiList() {
         view.showProgress()
-        poiRepository.getPoiList().subscribeOn(processScheduler).observeOn(uiScheduler)
-            .subscribe(::onGetPoiListSuccess, ::onGetPoiListError)
-            .addTo(disposables)
+        getPoiListUsecase().subscribe(::onGetPoiListSuccess, ::onGetPoiListError).addTo(disposables)
     }
 
     private fun onGetPoiListSuccess(pois: List<Poi>) {

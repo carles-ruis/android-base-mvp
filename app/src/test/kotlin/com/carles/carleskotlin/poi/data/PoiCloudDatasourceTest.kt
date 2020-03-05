@@ -1,17 +1,19 @@
 package com.carles.carleskotlin.poi.data
 
 import com.carles.carleskotlin.poi.model.Poi
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.verifyAll
 import io.reactivex.Single
 import org.junit.Test
 
 class PoiCloudDatasourceTest {
 
-    val localDatasource: PoiLocalDatasource = mockk()
     val poiDetail = Poi("the_poi")
     val poiList = listOf(poiDetail)
     val service: PoiService = mockk()
-    val datasource = PoiCloudDatasource(localDatasource, service)
+    val datasource = PoiCloudDatasource(service)
 
     @Test
     fun getPoiList_shouldPerformRequest() {
@@ -22,7 +24,10 @@ class PoiCloudDatasourceTest {
 
         datasource.getPoiList().test().assertValue(poiList).assertComplete()
 
-        verifyAll { service.getPoiList(); poiListDto.toModel() }
+        verifyAll {
+            service.getPoiList()
+            poiListDto.toModel()
+        }
     }
 
     @Test
@@ -31,14 +36,12 @@ class PoiCloudDatasourceTest {
         val poiDetailDto = PoiResponseDto("some_id")
         every { service.getPoiDetail("some_id") } returns Single.just(poiDetailDto)
         every { poiDetailDto.toModel() } returns poiDetail
-        every { localDatasource.persist(any()) } just Runs
 
         datasource.getPoiDetail("some_id").test().assertValue(poiDetail)
 
         verifyAll {
             service.getPoiDetail("some_id");
             poiDetailDto.toModel()
-            localDatasource.persist(poiDetail)
         }
     }
 }

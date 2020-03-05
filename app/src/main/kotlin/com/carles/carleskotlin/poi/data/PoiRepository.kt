@@ -9,8 +9,11 @@ import io.reactivex.Single
 class PoiRepository(private val poiLocalDatasource: PoiLocalDatasource, private val poiCloudDatasource: PoiCloudDatasource) {
 
     fun getPoiList(): Single<List<Poi>> =
-            Maybe.concat(poiLocalDatasource.getPoiList(), poiCloudDatasource.getPoiList().toMaybe()).firstOrError();
+        Maybe.concat(poiLocalDatasource.getPoiList(), poiCloudDatasource.getPoiList().toMaybe()).firstOrError();
 
     fun getPoiDetail(id: String): Single<Poi> =
-            Maybe.concat(poiLocalDatasource.getPoiDetail(id), poiCloudDatasource.getPoiDetail(id).toMaybe()).firstOrError();
+        Maybe.concat(
+            poiLocalDatasource.getPoiDetail(id),
+            poiCloudDatasource.getPoiDetail(id).doOnSuccess { poiLocalDatasource.persist(it) }.toMaybe()
+        ).firstOrError();
 }

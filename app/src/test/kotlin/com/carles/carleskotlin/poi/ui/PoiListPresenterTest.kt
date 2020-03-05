@@ -4,6 +4,7 @@ import com.carles.carleskotlin.R
 import com.carles.carleskotlin.createPoi
 import com.carles.carleskotlin.createPoiList
 import com.carles.carleskotlin.poi.data.PoiRepository
+import com.carles.carleskotlin.poi.usecase.GetPoiListUsecase
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -13,26 +14,23 @@ import org.junit.Test
 
 class PoiListPresenterTest {
 
-    val poiRepository: PoiRepository = mockk()
     val view: PoiListView = mockk(relaxed = true)
-    val testScheduler = TestScheduler()
-    var presenter = PoiListPresenter(view, testScheduler, testScheduler, poiRepository)
+    val getPoiListUsecase : GetPoiListUsecase = mockk()
+    var presenter = PoiListPresenter(view, getPoiListUsecase)
 
     @Test
     fun onViewCreated_getPoiListSuccess() {
-        every { poiRepository.getPoiList() } returns Single.just(createPoiList("one", "two"))
+        every { getPoiListUsecase.invoke() } returns Single.just(createPoiList("one", "two"))
         presenter.onViewCreated()
-        testScheduler.triggerActions()
-        verify { poiRepository.getPoiList() }
+        verify { getPoiListUsecase.invoke() }
         verify { with(view) { showProgress(); hideProgress(); displayPoiList(any()) } }
     }
 
     @Test
     fun onViewCreate_getPoiListError() {
-        every { poiRepository.getPoiList() } returns Single.error(Throwable())
+        every { getPoiListUsecase.invoke() } returns Single.error(Throwable())
         presenter.onViewCreated()
-        testScheduler.triggerActions()
-        verify { poiRepository.getPoiList() }
+        verify { getPoiListUsecase.invoke() }
         verify { with(view) { showProgress(); showError(R.string.error_server_response, any()) } }
     }
 

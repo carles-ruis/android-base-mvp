@@ -45,7 +45,6 @@ ext {
             retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             koin                 : "org.koin:koin-android:$koinVersion",
-            koinScope            : "org.koin:koin-android-scope:$koinVersion"
     ]
 
     testLibraries = [
